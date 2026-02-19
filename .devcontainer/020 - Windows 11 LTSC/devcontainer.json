@@ -2,7 +2,9 @@
   "name": "Windows 11 LTSC",
   "service": "windows",
   "containerEnv": {
-    "VERSION": "11l"
+    "VERSION": "11l",
+    "WIDTH": "1920",
+    "HEIGHT": "1080"
   },
   "forwardPorts": [8006],  
   "portsAttributes": {
