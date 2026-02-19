@@ -34,6 +34,14 @@ spec:
           value: "11"
         - name: DISK_SIZE
           value: "64G"
+        - name: RAM_SIZE
+          value: "8G"
+        - name: CPU_CORES
+          value: "4"
+        - name: WIDTH
+          value: "1920"
+        - name: HEIGHT
+          value: "1080"
         ports:
           - containerPort: 8006
             name: http
