@@ -35,6 +35,10 @@ services:
     container_name: windows
     environment:
       VERSION: "11"
+      RAM_SIZE: "8G"
+      CPU_CORES: "4"
+      WIDTH: "1920"
+      HEIGHT: "1080"
     devices:
       - /dev/kvm
       - /dev/net/tun
@@ -53,7 +57,7 @@ services:
 ##### Via Docker CLI:
 
 ```bash
-docker run -it --rm --name windows -e "VERSION=11" -p 8006:8006 --device=/dev/kvm --device=/dev/net/tun --cap-add NET_ADMIN -v "${PWD:-.}/windows:/storage" --stop-timeout 120 docker.io/dockurr/windows
+docker run -it --rm --name windows -e "VERSION=11" -e "RAM_SIZE=8G" -e "CPU_CORES=4" -e "WIDTH=1920" -e "HEIGHT=1080" -p 8006:8006 --device=/dev/kvm --device=/dev/net/tun --cap-add NET_ADMIN -v "${PWD:-.}/windows:/storage" --stop-timeout 120 docker.io/dockurr/windows
 ```
 
 ##### Via Kubernetes:
@@ -160,7 +164,7 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/windows/refs/heads/mas
 
 ### How do I change the amount of CPU or RAM?
 
-  By default, Windows will be allowed to use 2 CPU cores and 4 GB of RAM.
+  By default, Windows will be allowed to use 4 CPU cores and 8 GB of RAM.
 
   If you want to adjust this, you can specify the desired amount using the following environment variables:
 

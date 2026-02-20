@@ -496,7 +496,7 @@ getESD() {
   local eFile="esd_edition.xml"
   local fFile="products_filter.xml"
 
-  { wget "$catalog" -O "$dir/$file" -q --timeout=30 --no-http-keep-alive; rc=$?; } || :
+  { wget "$catalog" -O "$dir/$file" -q --timeout=30 --connect-timeout=10 --tries=3 --no-http-keep-alive; rc=$?; } || :
 
   msg="Failed to download $catalog"
   (( rc == 3 )) && error "$msg , cannot write file (disk full?)" && return 1
@@ -671,7 +671,7 @@ downloadFile() {
   info "$msg..."
   [[ "$DEBUG" == [Yy1]* ]] && echo "Downloading: $url"
 
-  { wget "$url" -O "$iso" --continue -q --timeout=30 --no-http-keep-alive --user-agent "$agent" --show-progress "$progress"; rc=$?; } || :
+  { wget "$url" -O "$iso" --continue -q --timeout=30 --connect-timeout=10 --tries=3 --no-http-keep-alive --user-agent "$agent" --show-progress "$progress"; rc=$?; } || :
 
   fKill "progress.sh"
 
@@ -718,7 +718,7 @@ downloadImage() {
   local lang="$3"
   local tried="n"
   local success="n"
-  local seconds="5"
+  local seconds="2"
   local url sum size base desc language
 
   if [[ "${version,,}" == "http"* ]]; then
